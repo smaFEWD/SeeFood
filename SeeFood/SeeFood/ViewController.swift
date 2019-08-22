@@ -9,13 +9,15 @@
 import UIKit
 import CoreML
 import Vision
+import SVProgressHUD
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     
-    let imagePicker = UIImagePickerController()
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -59,6 +61,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let firstResult = results.first {
                 if firstResult.identifier.contains("hotdog") {
                     self.navigationItem.title = "Hotdog!"
+                   
                 } else {
                     self.navigationItem.title = "Not a Hotdog!"
                 }
