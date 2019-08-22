@@ -22,12 +22,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera // implementing camera functionality in app
+//        imagePicker.sourceType = .camera // implementing camera functionality in app
+        imagePicker.sourceType = .savedPhotosAlbum
         imagePicker.allowsEditing = false
         
     }
     // this tells the delegate that the user has picked an image or movie
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
         // this key will yield the image picked by the user
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = userPickedImage
@@ -58,12 +60,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 fatalError("Model failed to process image." )
             }
 //            print(results)
+            
             if let firstResult = results.first {
                 if firstResult.identifier.contains("hotdog") {
                     self.navigationItem.title = "Hotdog!"
-                   
+
                 } else {
                     self.navigationItem.title = "Not a Hotdog!"
+
                 }
             }
         }
